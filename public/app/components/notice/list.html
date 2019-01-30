@@ -1,0 +1,47 @@
+<div class="container">
+
+    <h1>Notice</h1>
+
+    <div class="row container">
+        <a ui-sref="noticeCreate" class="btn btn-default pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-stripped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Details</th>
+                    <th>Posted By</th>
+                    <th>Date time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="notice in notices">
+                    <td>{{ notice.title }}</td>
+                    <td>{{ notice.details + '..' }}</td>
+                    <td>{{ notice.postedBy.username }}</td>
+                    <td>{{ notice.created_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}</td>
+                </tr>
+
+                <!-- date:'DD MMM, YYYY (hh:mm a)' -->
+                <!-- <td>{{ notice.created_at | dateWithoutZone | date:'dd MMM, yyyy (hh:mm a)' }}</td> -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center">
+        <ul class="pagination">
+            <li ng-repeat="n in [].constructor(totalPages + 1) track by $index" 
+                ng-if="$index != 0" 
+                ng-class="{'active': currentPage == $index}" 
+                ng-click="loadNotices($index)">
+                <a href="">{{ $index }}</a>
+            </li>
+        </ul>
+    </div>
+    
+</div>

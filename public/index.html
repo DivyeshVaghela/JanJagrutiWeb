@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="parentCtrl">
+	<head>
+		<title>{{ appName }}</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="assets/css/bootstrap.css" />
+		<link rel="stylesheet" href="assets/css/style.css" />
+		<link rel="stylesheet" href="assets/css/ng-style.css" />
+
+		<script src="assets/libs/jquery-3.3.1.js"></script>
+		<script src="assets/libs/bootstrap.js"></script>
+
+		<script src="assets/libs/moment.js"></script>
+
+		<script src="assets/libs/angular.js"></script>
+		<script src="assets/libs/angular-ui-router.js"></script>
+		<script src="assets/libs/angular-resource.js"></script>
+		<script src="assets/libs/angular-animate.js"></script>
+	</head>
+	<body>
+
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">{{ appName }}</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li ng-if="isAuthenticated()" ui-sref-active="active"><a ui-sref="home">Home</a></li>
+						<li ng-if="isAuthenticated()" ui-sref-active="active"><a ui-sref="notice">Notice</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li ng-if="!isAuthenticated()" ui-sref-active="active"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li ng-if="isAuthenticated()"><a href="#" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div ui-view></div>
+
+	</body>
+
+	<!-- configuration -->
+	<script type="text/javascript" src="app/app.module.js"></script>
+	<!-- route -->
+	<script type="text/javascript" src="app/app.route.js"></script>
+
+	<!-- top controller -->
+	<script type="text/javascript" src="app/shared/parentControllers.js"></script>
+	<!-- user/security -->
+	<script type="text/javascript" src="app/components/user/userControllers.js"></script>
+	<script type="text/javascript" src="app/components/user/userServices.js"></script>
+	<!-- home -->
+	<script type="text/javascript" src="app/components/home/homeControllers.js"></script>
+	<!-- notice -->
+	<script type="text/javascript" src="app/components/notice/noticeServices.js"></script>
+	<script type="text/javascript" src="app/components/notice/noticeControllers.js"></script>
+
+	<!-- formatter -->
+	<script type="text/javascript" src="app/shared/formatter.js"></script>
+</html>

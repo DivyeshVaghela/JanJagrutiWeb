@@ -1,0 +1,45 @@
+<div class="container">
+
+    <h1 class="text-center">Login</h1>
+    <hr><br/>
+
+    <div class="row">
+
+        <div class="col-sm-offset-4 col-sm-4">
+            <form name="loginForm" ng-submit="login(loginForm.$valid)" novalidate>
+
+                <div class="alert alert-danger text-center" ng-show="errorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="credential.email"
+                        required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && loginForm.$invalid && loginForm.email.$error.required">
+                        Email can't be empty
+                    </p>
+                    <p class="field-error" ng-show="isSubmitionInitiated && loginForm.$invalid && loginForm.email.$error.email">
+                        Please enter a valid email address
+                    </p>
+                </div>
+                        
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="credential.password"
+                        required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && loginForm.$invalid && loginForm.password.$error.required">
+                        Password can't be empty
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-block btn-primary" ng-click="isSubmitionInitiated = true">
+                        <span class="glyphicon glyphicon-log-in"></span> Login
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

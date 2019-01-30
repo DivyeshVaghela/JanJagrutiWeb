@@ -1,0 +1,37 @@
+<div class="container">
+
+    <h1 class="text-center">Create Notice</h1>
+    <hr><br/>
+
+    <div class="row">
+
+        <div class="col-sm-offset-4 col-sm-4">
+            <form name="noticeForm" ng-submit="create(noticeForm.$valid)" novalidate>
+
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" ng-model="notice.title" required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && noticeForm.$invalid && noticeForm.title.$error.required">
+                        Title can't be empty
+                    </p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="noticeDetails">Notice:</label>
+                    <textarea class="form-control" id="noticeDetails" name="noticeDetails" placeholder="Notice details here.." rows="5" ng-model="notice.noticeDetails" required></textarea>
+                    <p class="field-error" ng-show="isSubmitionInitiated && noticeForm.$invalid && noticeForm.noticeDetails.$error.required">
+                        Notice details can't be empty
+                    </p>
+                </div>
+        
+                <button type="submit" class="btn btn-primary" ng-click="isSubmitionInitiated = true">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add
+                </button>
+                <a ui-sref="notice" class="btn btn-default">Cancel</a>
+                
+            </form>
+        </div>
+    </div>
+
+</div>
