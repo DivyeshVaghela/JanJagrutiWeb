@@ -44,19 +44,31 @@
                 },
 
                 responseError: function(rejection){
+
                     var userService = $injector.get('userService');
                     switch(rejection.status){
                         
                         case 401:
-                            userService.logout();
-                            $state.go('login');
+                            if ($state.current.name == 'login'){
+                                rejection.handled = false;
+                            } else {
+                                userService.logout();
+                                $state.go('login');
+                                rejection.handled = true;
+                            }
                             break;
 
                         case 403:
-                            console.log($state);
+                            alert(rejection.data.message);
                             $state.go('home');
+                            rejection.handled = true;
+                            break;
+
+                        default:
+                            rejection.handled = false;
                             break;
                     }
+                    return $q.reject(rejection);
                 }
             }
         };

@@ -43,21 +43,15 @@
                         $scope.currentPage = page;
                     })
                     .catch(function(err){
-                        console.log(err);
-                        alert('There was some problem while fetching notice list');
+                        if (!err.handled){
+                            console.log(err);
+                            alert(err.data.message);
+                        }
                     });
             }
         };
         $scope.loadNotices(1);
 
-        $scope.getFormattedDate = function(date, pattern){
-            return moment(moment.utc(date).local()).format(pattern);
-            //return new Date(date).toString('dd MM, yyyy (hh:mm a)');
-        }
-
-        // $scope.getDate = function(date){
-        //     return date.substring(0, date.lastIndexOf('.'));
-        // };
     }
 
     //create notice
@@ -81,9 +75,11 @@
                     .then(function(response){
                         $state.go('notice');
                     })
-                    .catch(function(err){
-                        console.log(err);
-                        alert('There was some problem while saving notice, please try again');
+                    .catch(function(response){
+                        if (!response.handled){
+                            console.log(response);
+                            alert(response.data.message);
+                        }
                     });
             }
         };
