@@ -4,18 +4,26 @@
     angular
         .module('app')
         .controller('noticeListCtrl', noticeListCtrl)
-        .controller('noticeCreateCtrl', noticeCreateCtrl);
+        .controller('noticeCreateCtrl', noticeCreateCtrl)
+        .controller('noticeDetailsCtrl', noticeDetailsCtrl);
 
     //notice list
-    noticeListCtrl.$inject = ['$scope', 'noticeService'];
-    function noticeListCtrl($scope, noticeService){
+    noticeListCtrl.$inject = ['$scope', '$rootScope', 'noticeService'];
+    function noticeListCtrl($scope, $rootScope, noticeService){
 
+        $rootScope.breadcrumbItems = [
+            {
+                label: 'Notices',
+                state: 'notice'
+            }
+        ];
+
+        $scope.Math = window.Math;
+        
         $scope.notices = [];
-
         $scope.totalNotices = 0;
-
         $scope.details = true;
-        $scope.detailsLimit = 30;
+        $scope.detailsLimit = 70;
         $scope.pageSize = 20;
 
         $scope.totalPages = 0;
@@ -33,19 +41,13 @@
                     .then(function(response){
                         $scope.totalNotices = response.count;
                         $scope.notices = response.rows;
-
-                        var result = $scope.totalNotices / $scope.pageSize;
-                        if (result % 1 != 0){
-                            result = parseInt(result + 1);
-                        }
-                        $scope.totalPages = result;
+                        $scope.totalPages = $scope.Math.ceil($scope.totalNotices / $scope.pageSize);
 
                         $scope.currentPage = page;
                     })
                     .catch(function(err){
                         if (!err.handled){
                             console.log(err);
-                            alert(err.data.message);
                         }
                     });
             }
@@ -55,9 +57,18 @@
     }
 
     //create notice
-    noticeCreateCtrl.$inject = ['$scope', '$state', 'noticeService'];
-    function noticeCreateCtrl($scope, $state, noticeService){
-
+    noticeCreateCtrl.$inject = ['$scope', '$rootScope', '$state', 'noticeService'];
+    function noticeCreateCtrl($scope, $rootScope, $state, noticeService){
+        
+        $rootScope.breadcrumbItems = [
+            {
+                label: 'Notices',
+                state: 'notice'
+            },
+            {
+                label: 'Create'
+            }
+        ];
         $scope.isSubmitionInitiated = false;
 
         $scope.notice = {
@@ -85,5 +96,33 @@
         };
     }
     
+    noticeDetailsCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'noticeService'];
+    function noticeDetailsCtrl($scope, $rootScope, $state, $stateParams, noticeService){
+        
+        $rootScope.breadcrumbItems = [
+            {
+                label: 'Notices',
+                state: 'notice'
+            }
+        ];
+        noticeService.get({
+            id: $stateParams.noticeId
+        }).$promise
+            .then(function(response){
+                $scope.notice = response;
+
+                $rootScope.breadcrumbItems.push({
+                    label: $scope.notice.title
+                });
+            })
+            .catch(function(err){
+                if (!err.handled){
+                    console.log(err);
+                    alert('There was some problem');
+                    $state.go('notice');
+                }
+            });
+
+    }
 
 })();

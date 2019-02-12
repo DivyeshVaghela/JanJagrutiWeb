@@ -3,3 +3,27 @@
     font-style: italic;
     text-align: right;
 }
+
+.field-info{
+    color: slategrey;
+    font-style: italic;
+    text-align: right;
+}
+
+.text-line-breaked{
+    white-space: pre-wrap;
+}
+
+.text-green{
+    color: green;
+}
+
+.text-black{
+    color: black;
+}
+
+.container-stylish{
+    background-color:lavender;
+    padding:20px;
+    border-radius:5px;
+}

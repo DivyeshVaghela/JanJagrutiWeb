@@ -1,0 +1,56 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-icon">
+                    <img ng-if="material" ng-src="{{ CONSTANTS.BASE_URL + material.type.logoPath }}">
+                </div>
+                <div class="info">
+                    <h4 class="text-center">
+                        {{ material.title}}
+                        <br/>
+                        <small><span class="label label-primary">{{ material.subject.title }}</span></small>
+                    </h4>
+                    <p class="text-center">
+                        <a ui-sref="materialEdit({ id:material.id })" class="btn btn-sm btn-link text-green" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                    </p>
+
+                    <p class="text-center" ng-if="material.subtitle"><strong>{{ material.subtitle }}</strong></p>
+                    <p class="text-line-breaked" ng-if="material.details">{{ material.details }}</p>
+
+                    <br/>
+                    <div class="row text-center">
+                        <div class="col-sm-12">
+                            <p>
+                                <strong><span class="glyphicon glyphicon-user"></span> Created By : </strong>
+                                {{ material.createdBy.username }} ({{ material.createdBy.email }})
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>
+                                <strong><span class="glyphicon glyphicon-time"></span> Created At : </strong>
+                                {{ material.created_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>
+                                <strong><span class="glyphicon glyphicon-time"></span> Last-modified : </strong>
+                                {{ material.updated_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

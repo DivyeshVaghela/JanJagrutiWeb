@@ -1,0 +1,58 @@
+<div class="container">
+    
+    <h1>
+        Subjects
+        <a ui-sref="subjectCreate" class="btn btn-default pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add
+        </a>
+    </h1>
+
+    <div class="container">
+
+        <div class="row" ng-repeat="counter in [].constructor(Math.ceil(subjects.length / 4)) track by $index">
+
+            <div class="col-sm-3" ng-repeat="subject in subjects | limitTo:4:($index+1)*4-4">
+                <div class="card card-elmnt">
+                    <img ng-src="{{ CONSTANTS.BASE_URL + subject.logoPath }}">
+                    <div class="info">
+                        <div class="title">
+                            <a ui-sref="subjectDetails({ subjectId:subject.id })">
+                                {{ subject.title }}
+                            </a>
+                        </div>
+                        <div>
+                            <p class="desc">{{ subject.subtitle }}</p>
+                            <p>
+                                <a ui-sref="subjectEdit({ subjectId:subject.id })" data-toggle="tooltip" data-placement="top" title="Edit" onmouseover="$(this).tooltip('show')" class="btn btn-link btn-xs text-green">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                                <a ui-sref="subjectMaterials({ subjectId:subject.id })" data-toggle="tooltip" data-placement="top" title="Materials" onmouseover="$(this).tooltip('show')" class="btn btn-link btn-xs text-black">
+                                    <span class="glyphicon glyphicon-file"></span>
+                                </a>
+                                <a ui-sref="subjectMaterialCreate({ subjectId:subject.id })" data-toggle="tooltip" data-placement="top" title="Add Material" onmouseover="$(this).tooltip('show')" class="btn btn-xs btn-link">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </a>
+                            </p>
+                        </div>
+                        <!-- <div class="bottom">
+                            <strong><span class="glyphicon glyphicon-user"></span> Created By</strong>
+                            <br/>
+                            {{ subject.createdBy.username }} ({{ subject.createdBy.email }})
+                        </div>
+                        <div class="bottom">
+                            <strong><span class="glyphicon glyphicon-time"></span> Created</strong>
+                            <br/>
+                            {{ subject.created_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                        </div>
+                        <div class="bottom">
+                            <strong><span class="glyphicon glyphicon-time"></span> Last Modified</strong>
+                            <br/>
+                            {{ subject.updated_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</div>

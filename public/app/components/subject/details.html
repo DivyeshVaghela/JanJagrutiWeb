@@ -1,0 +1,57 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-icon">
+                    <img ng-if="subject" ng-src="{{ CONSTANTS.BASE_URL + subject.logoPath }}">
+                </div>
+                <div class="info">
+                    <h4 class="text-center">
+                        {{ subject.title }}
+                        <br/>
+                        <small>
+                            <a ui-sref="subjectEdit({ subjectId:subject.id })" data-toggle="tooltip" data-placement="top" title="Edit" onmouseover="$(this).tooltip('show')" class="btn btn-link btn-xs text-green">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a ui-sref="subjectMaterials({ subjectId:subject.id })" data-toggle="tooltip" data-placement="top" title="Materials" onmouseover="$(this).tooltip('show')" class="btn btn-link btn-xs text-black">
+                                <span class="glyphicon glyphicon-file"></span>
+                            </a>
+                            <a ui-sref="subjectMaterialCreate({ subjectId:subject.id })" data-toggle="tooltip" data-placement="top" title="Add Material" onmouseover="$(this).tooltip('show')" class="btn btn-xs btn-link">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </small>
+                    </h4>
+
+                    <p class="text-center" ng-if="subject.subtitle && subject.subtitle!='null'"><strong>{{ subject.subtitle }}</strong></p>
+                    <p class="text-line-breaked" ng-if="subject.details && subject.details!='null'">{{ subject.details }}</p>
+                    
+                    <br/>
+                    <div class="row text-center">
+                        <div class="col-sm-12">
+                            <p>
+                                <strong><span class="glyphicon glyphicon-user"></span> Created By : </strong>
+                                {{ subject.createdBy.username }} ({{ subject.createdBy.email }})
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>
+                                <strong><span class="glyphicon glyphicon-time"></span> Created At : </strong>
+                                {{ subject.created_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>
+                                <strong><span class="glyphicon glyphicon-time"></span> Last-modified : </strong>
+                                {{ subject.updated_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

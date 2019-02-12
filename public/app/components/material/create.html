@@ -1,0 +1,73 @@
+<div class="container">
+
+    <h1 class="text-center">Add Material</h1>
+    <hr><br/>
+
+    <div class="row">
+
+        <div class="col-sm-offset-4 col-sm-4">
+            <form name="materialForm" ng-submit="create(materialForm.$valid)" novalidate>
+
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <select id="subject" name="subject" class="form-control" ng-model="material.subjectId" required>
+                        <option value="">Select subject..</option>
+                        <option ng-repeat="subject in subjects" value="{{ subject.id }}">{{ subject.title }}</option>
+                    </select>
+                    <p class="field-error" ng-show="isSubmitionInitiated && materialForm.$invalid && materialForm.subject.$error.required">
+                        Please select a subject
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" ng-model="material.title" required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && materialForm.$invalid && materialForm.title.$error.required">
+                        Title can't be empty
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="subtitle">Subtitle:</label>
+                    <input type="text" class="form-control" id="title" name="subtitle" placeholder="One-line material subtitle" ng-model="material.subtitle" required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && materialForm.$invalid && materialForm.subtitle.$error.required">
+                        Subtitle can't be empty
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Details:</label>
+                    <textarea class="form-control" id="details" name="details" placeholder="Material details here.." rows="5" ng-model="material.details"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select id="type" name="type" class="form-control" ng-model="material.typeId" required>
+                        <option value="">Select Material Type..</option>
+                        <option ng-repeat="mimeType in mimeTypes" value="{{ mimeType.id }}">{{ mimeType.name }}({{ mimeType.value }})</option>
+                    </select>
+                    <p class="field-error" ng-show="isSubmitionInitiated && materialForm.$invalid && materialForm.type.$error.required">
+                        Please select material type
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="materialFile">Material:</label>
+                    <input type="file" name="materialFile" id="materialFile" class="form-control" ng-disabled="material.typeId == null" accept="{{ selectedType }}" file-model="material.materialFile" ng-model="material.materialFile" required />
+                    <p class="field-error" ng-show="isSubmitionInitiated && materialForm.$invalid && materialForm.materialFile.$error.required">
+                        Please select material file
+                    </p>
+                </div>
+
+                <button type="submit" class="btn btn-primary" ng-click="isSubmitionInitiated = true">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add
+                </button>
+                <a href="javascript:history.back()" class="btn btn-default">Cancel</a>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

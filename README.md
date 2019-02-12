@@ -12,6 +12,7 @@
 * jQuery
 
 ## *TODO*
+- Change the API Server address in ```/public/app/app.module.js```
 - \> npm install <small><em>(If you want to use http-server)</em></small>
     **OR**
 - Host this in any HTTP server (e.g. apache tomcat, glashfish)

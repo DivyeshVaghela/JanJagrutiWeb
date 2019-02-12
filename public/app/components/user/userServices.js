@@ -83,6 +83,51 @@
             delete $window.sessionStorage.user;
         };
 
+        var verifyEmail = function(email, verificationCode){
+
+            var defer = $q.defer();
+
+            $http({
+                url: (CONSTANTS.BASE_URL + '/user/verify-email').toString(),
+                method: 'POST',
+                data: {
+                    email, verificationCode
+                }
+            }).then(function(response){
+                if (response == undefined){
+                    defer.reject('Sorry, there was some problem, please try again');
+                } else if (response.data.success == true){
+                    var message = response.data.hasOwnProperty('message') ? response.data.message : 'Your email address verified successfully';
+                    defer.resolve(message);
+                } else {
+                    defer.reject('Sorry, there was some problem, please try again');
+                }
+            }).catch(function(err){
+                defer.reject(err);
+            });
+
+            return defer.promise;
+        };
+
+        var resetPassword = function(email, password, verificationCode){
+
+            var defer = $q.defer();
+
+            $http({
+                url: (CONSTANTS.BASE_URL + '/user/reset-password').toString(),
+                method: 'POST',
+                data: {
+                    email, password, verificationCode
+                }
+            }).then(function(response){
+                defer.resolve(response);
+            }).catch(function(err){
+                defer.reject(err);
+            });
+
+            return defer.promise;
+        };
+
         return {
             login,
             logout,
@@ -90,7 +135,10 @@
             getToken,
             getTokenObject,
             getExpire,
-            isAuthenticated
+            isAuthenticated,
+
+            verifyEmail,
+            resetPassword
         };
     }
 

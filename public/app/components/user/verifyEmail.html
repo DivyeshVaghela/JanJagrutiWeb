@@ -1,0 +1,19 @@
+<div class="container text-center container-stylish">
+    
+    <h1>Jan Jagruti</h1>
+
+    <h3>Email Verification</h3>
+
+    <p ng-if="inProgress">
+        Email verification is in progress, please wait..
+    </p>
+
+    <p ng-if="isVerified">
+        Your email address &quot;{{ email }}&quot; has been verified successfully, you can login now.
+    </p>
+
+    <p ng-if="failureMessage">
+        {{ failureMessage }}
+    </p>
+
+</div>

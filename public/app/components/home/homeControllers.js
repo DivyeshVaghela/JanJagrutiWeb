@@ -5,18 +5,11 @@
         .module('app')
         .controller('homeCtrl', homeCtrl);
 
-    homeCtrl.$inject = ['$scope', 'CONSTANTS','$http'];
-    function homeCtrl($scope, CONSTANTS, $http){
-        $scope.message = null;
+    homeCtrl.$inject = ['$scope', '$rootScope', 'CONSTANTS','$http'];
+    function homeCtrl($scope, $rootScope, CONSTANTS, $http){
 
-        // $http({
-        //     url: CONSTANTS.BASE_URL + '/admin/protected',
-        //     method: 'GET'
-        // }).then(function(response){
-        //     $scope.message = response.data.message;
-        // }).catch(function(err){
-        //     console.log(err);
-        // });
+        $rootScope.breadcrumbItems = [];
+
     }
 
 })();

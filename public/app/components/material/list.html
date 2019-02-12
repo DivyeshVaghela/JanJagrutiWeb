@@ -1,0 +1,60 @@
+<div class="container">
+
+    <h1>
+        <span ng-show="subject">
+            &quot;{{ subject.title }}&quot; Materials 
+        </span>
+        <span ng-show="!subject">
+            Materials 
+        </span>
+        <a ng-if="!subjectId" ui-sref="materialCreate" class="btn btn-default pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add
+        </a>
+        <a ng-if="subjectId" ui-sref="subjectMaterialCreate({ subjectId:subjectId })" class="btn btn-default pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add
+        </a>
+    </h1>
+
+    <a href="javascript:history.back()" class="btn btn-link"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+
+    <div class="row" ng-if="totalMaterials == 0">
+        <div class="col-sm-12">
+            <div class="card card-material">
+                <h3>No any materials available</h3>
+                <p>You can add new material using Add button</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-repeat="counter in [].constructor(Math.ceil(materials.length / 3)) track by $index">
+        
+        <div class="col-md-4" ng-repeat="material in materials | limitTo:3:($index+1)*3-3">
+            <div class="card card-material" style="background-image: url({{ CONSTANTS.BASE_URL + material.type.logoPath }})">
+                <h3><a ui-sref="materialDetails({ id:material.id })">{{ material.title }}</a></h3>
+                <p>{{ material.subtitle }}</p>
+
+                <p>
+                    <span class="glyphicon glyphicon-time"></span> {{ material.created_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                </p>
+            </div>
+        </div>
+        
+    </div>
+
+    <br/><br/>
+
+    <div class="text-center">
+        <ul class="pagination">
+            <li ng-repeat="n in [].constructor(totalPages + 1) track by $index" 
+                ng-if="$index != 0" 
+                ng-class="{'active': currentPage == $index}" 
+                ng-click="loadMaterials($index)">
+                <a href="">{{ $index }}</a>
+            </li>
+        </ul>
+    </div>
+    
+    <br/><br/>
+</div>

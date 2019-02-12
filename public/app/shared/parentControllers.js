@@ -11,6 +11,7 @@
         $rootScope.appName = 'Jan Jagruti';
 
         $scope.isAuthenticated = function(){
+            $rootScope.user = userService.getUser();
             return userService.isAuthenticated();
         };
 

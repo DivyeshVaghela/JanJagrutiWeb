@@ -9,24 +9,27 @@
 
     app.constant('CONSTANTS', (function(){
         return {
-            BASE_URL: 'http://localhost:3000',
+            BASE_URL: 'http://localhost:3000',                          //TODO: change the API server address
             LOGIN_URI: '/admin/auth'
         };
     })());
 
     //intercept state change
-    app.run(['$state','$transitions','userService', function($state, $transitions, userService){
+    app.run(['$state', '$rootScope', '$transitions','userService', function($state, $rootScope, $transitions, userService){
 
         $transitions.onStart({}, function($transitions){
             var toState = $transitions.$to();
+            var publicStates = ['login', 'verifyEmail', 'resetPassword'];
 
-            if (toState.name != "login" && 
+            // toState.name != "login" && 
+            if (publicStates.indexOf(toState.name) == -1 &&
                     ( !userService.isAuthenticated()
                     || (userService.getExpire() != null && userService.getExpire() < (Date.now() / 1000)) )
                 ){
                 userService.logout();
                 return $transitions.router.stateService.target('login');
             }
+            $rootScope.breadcrumbItems = [];
         });
     }]);
 

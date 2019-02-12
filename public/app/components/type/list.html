@@ -1,0 +1,27 @@
+<div class="container">
+
+    <h1>
+        Types <small>(MIME Types for material)</small>
+        <a ui-sref="materialTypeCreate" class="btn btn-default pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add
+        </a>
+    </h1>
+
+    <div class="row" ng-repeat="counter in [].constructor(Math.ceil(types.length / 3)) track by $index">
+
+        <div class="col-md-4" ng-repeat="type in types | limitTo:3:($index+1)*3-3">
+            <div class="card card-material" style="background-image: url({{ CONSTANTS.BASE_URL + type.logoPath }})">
+                <h3>
+                    {{ type.name }}
+                </h3>
+                <p>{{ type.value }}</p>
+                <p>{{ type.details }}</p>
+
+                <a ui-sref="materialTypeEdit({ typeId:type.id })" class="btn btn-default btn-md text-green"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

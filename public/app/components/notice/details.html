@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div class="box no-icon">
+                <div class="info">
+                    <h4>
+                        {{ notice.title }}
+                    </h4>
+                </div>
+
+                <p class="text-line-breaked">{{ notice.details }}</p>
+
+                <br/>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>
+                            <strong><span class="glyphicon glyphicon-user"></span> Created By : </strong>
+                            {{ notice.postedBy.username }} ({{ notice.postedBy.email }})
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>
+                            <strong><span class="glyphicon glyphicon-time"></span> Created At : </strong>
+                            {{ notice.created_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

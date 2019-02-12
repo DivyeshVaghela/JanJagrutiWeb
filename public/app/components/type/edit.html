@@ -1,0 +1,51 @@
+<div class="container">
+
+    <h1 class="text-center">Create Material Type <small>(MIME Type)</small></h1>
+    <hr><br/>
+
+    <div class="row">
+
+        <div class="col-sm-offset-4 col-sm-4">
+            <form name="typeForm" ng-submit="update(typeForm.$valid)" novalidate>
+
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="type.name" required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && typeForm.$invalid && typeForm.name.$error.required">
+                        Type name can't be empty
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="value">Value:</label>
+                    <input type="text" class="form-control" id="value" name="value" placeholder="e.g. application/pdf" ng-model="type.value" required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && typeForm.$invalid && typeForm.value.$error.required">
+                        Value can't be empty
+                    </p>
+                </div>
+    
+                <div class="form-group">
+                    <label for="logo">Change Logo:</label>
+                    <input type="file" name="logo" id="logo" class="form-control" accept="image/jpeg, image/png" file-model="type.logo" ng-model="subject.logo" />
+                    <p class="field-info">
+                        Only PNG (recommended) and JPG (acceptable)
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Details:</label>
+                    <textarea class="form-control" id="details" name="details" placeholder="Supported Type details here.." rows="5" ng-model="type.details"></textarea>
+                </div>
+    
+                <button type="submit" class="btn btn-primary" ng-click="isSubmitionInitiated = true">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Update
+                </button>
+                <a ui-sref="materialType" class="btn btn-default">Cancel</a> 
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
