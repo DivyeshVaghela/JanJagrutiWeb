@@ -116,6 +116,28 @@
                 url: '/material/:id/edit',
                 templateUrl: '/app/components/material/edit.html',
                 controller: 'materialEditCtrl'
+            })
+            
+            //Package
+            .state('package', {
+                url: '/package',
+                templateUrl: '/app/components/package/list.html',
+                controller: 'packageListCtrl'
+            })
+            .state('packageCreate', {
+                url: '/package/create',
+                templateUrl: '/app/components/package/create.html',
+                controller: 'packageCreateCtrl'
+            })
+            .state('packageDetails', {
+                url: '/package/:packageId',
+                templateUrl: '/app/components/package/details.html',
+                controller: 'packageDetailsCtrl'
+            })
+            .state('packageEdit', {
+                url: '/package/:packageId/edit',
+                templateUrl: '/app/components/package/edit.html',
+                controller: 'packageEditCtrl'
             });
 
     }]);

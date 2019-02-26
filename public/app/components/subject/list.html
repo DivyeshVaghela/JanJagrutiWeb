@@ -13,13 +13,14 @@
         <div class="row" ng-repeat="counter in [].constructor(Math.ceil(subjects.length / 4)) track by $index">
 
             <div class="col-sm-3" ng-repeat="subject in subjects | limitTo:4:($index+1)*4-4">
+                <a ui-sref="subjectDetails({ subjectId:subject.id })" class="no-decoration">
                 <div class="card card-elmnt">
                     <img ng-src="{{ CONSTANTS.BASE_URL + subject.logoPath }}">
                     <div class="info">
                         <div class="title">
-                            <a ui-sref="subjectDetails({ subjectId:subject.id })">
+                            
                                 {{ subject.title }}
-                            </a>
+
                         </div>
                         <div>
                             <p class="desc">{{ subject.subtitle }}</p>
@@ -52,6 +53,7 @@
                         </div> -->
                     </div>
                 </div>
+                </a>
             </div>
 
         </div>

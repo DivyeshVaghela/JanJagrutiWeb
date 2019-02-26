@@ -9,8 +9,9 @@
     </h1>
 
     <div ng-repeat="notice in notices">
+        <a ui-sref="noticeDetails({ noticeId:notice.id })" class="no-decoration">
         <div class="card card-material no-icon">
-            <h3><a ui-sref="noticeDetails({ noticeId:notice.id })">{{ notice.title }}</a></h3>
+            <h3>{{ notice.title }}</h3>
             <p>{{ notice.details + '..' }}</p>
             <br/>
             <p>
@@ -20,6 +21,7 @@
                 <span class="glyphicon glyphicon-user"></span> {{ notice.postedBy.username }} ({{ notice.postedBy.email }})
             </p>
         </div>
+        </a>
     </div>
     
     

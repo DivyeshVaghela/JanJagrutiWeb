@@ -10,11 +10,12 @@
                 <div class="info">
                     <h4 class="text-center">
                         {{ material.title}}
+                        <img ng-if="material.isPremium" src="/assets/images/premium.png" title="Premium">
                         <br/>
                         <small><span class="label label-primary">{{ material.subject.title }}</span></small>
                     </h4>
                     <p class="text-center">
-                        <a ui-sref="materialEdit({ id:material.id })" class="btn btn-sm btn-link text-green" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a ui-sref="materialEdit({ id:material.id })" class="btn btn-sm btn-default text-green"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
                     </p>
 
                     <p class="text-center" ng-if="material.subtitle"><strong>{{ material.subtitle }}</strong></p>

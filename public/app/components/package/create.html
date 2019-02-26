@@ -1,0 +1,76 @@
+<div class="container">
+
+    <h1 class="text-center">Create Package</h1>
+    <hr><br/>
+
+    <div class="row">
+
+        <div class="col-sm-offset-3 col-sm-6">
+
+            <form name="packageForm" ng-submit="create(packageForm.$valid)" novalidate>
+
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" ng-model="package.title" required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && packageForm.$invalid && packageForm.title.$error.required">
+                        Title can't be empty
+                    </p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subtitle">Subtitle:</label>
+                    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="One-line package subtitle" ng-model="package.subtitle" required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && packageForm.$invalid && packageForm.subtitle.$error.required">
+                        Subtitle can't be empty
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Details:</label>
+                    <textarea class="form-control" id="details" name="details" placeholder="Package details here.." rows="5" ng-model="package.details"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="duration">Validity:</label>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <input type="number" class="form-control" id="duration" name="duration" ng-model="package.duration" required>
+                        </div>
+                        <div class="col-xs-8">
+                            <select id="durationScale" name="durationScale" ng-model="package.durationScale" class="form-control" required>
+                                <option value="">Select Scale..</option>
+                                <option value="day">Day(s)</option>
+                                <option value="Week">Week(s)</option>
+                                <option value="month">Month(s)</option>
+                                <option value="year">Year(s)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="field-error" ng-show="isSubmitionInitiated && packageForm.$invalid && (packageForm.duration.$error.required || packageForm.durationScale.$error.required)">
+                        Validity & scale can't be empty
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="rate">Rate:</label>
+                    <input type="number" step="0.01" min="0.00" class="form-control" id="rate" name="rate" placeholder="Package price" ng-model="package.rate" required>
+                    <p class="field-error" ng-show="isSubmitionInitiated && packageForm.$invalid && packageForm.rate.$error.required">
+                        Rate can't be empty
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-click="isSubmitionInitiated = true">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Add
+                    </button>
+                    <a ui-sref="package" class="btn btn-default">Cancel</a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

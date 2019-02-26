@@ -27,6 +27,10 @@
     font-weight: 600;
 }
 
+.card-material h3 > img {
+    width: 50px;
+}
+
 .card-material > img{
     position: absolute;
     top: 20px;

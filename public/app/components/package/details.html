@@ -1,0 +1,50 @@
+<div class="container">
+
+        <div class="row">
+
+            <div class="col-xs-12">
+                <div class="box no-icon">
+                    <div class="info">
+                        <h4>
+                            {{ package.title }}
+                            <a ui-sref="packageEdit({ packageId:package.id })" class="btn btn-sm btn-link text-green" data-toggle="tooltip" data-placement="bottom" title="Edit" onmouseover="$(this).tooltip('show')"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <br/>
+                            <small>{{ package.subtitle }}</small>
+                        </h4>
+                    </div>
+
+                    <h4><strong>&#8377; {{ package.rate }}</strong> for {{ package.duration }} {{ package.durationScale }}</h4>
+                    
+                    <br/>
+                    <p>
+                        {{ package.details }}
+                    </p>
+                    <br/>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                <strong><span class="glyphicon glyphicon-user"></span> Created By : </strong>
+                                {{ package.createdBy.username }} ({{ package.createdBy.email }})
+                            </p>
+                            <p>
+                                <strong><span class="glyphicon glyphicon-time"></span> Created At : </strong>
+                                {{ package.created_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                            </p>
+                        </div>
+                        <div class="col-sm-6" ng-show="package.updatedBy">
+                            <p>
+                                <strong><span class="glyphicon glyphicon-user"></span> Modified By : </strong>
+                                {{ package.updatedBy.username }} ({{ package.updatedBy.email }})
+                            </p>
+                            <p>
+                                <strong><span class="glyphicon glyphicon-time"></span> Modified At : </strong>
+                                {{ package.updated_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</div>    

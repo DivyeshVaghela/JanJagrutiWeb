@@ -1,0 +1,39 @@
+<div class="container">
+
+    <h1>
+        Package 
+        <a ui-sref="packageCreate" class="btn btn-default pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add
+        </a>
+    </h1>
+
+    <div ng-repeat="package in packages">
+        <a ui-sref="packageDetails({ packageId:package.id })" class="no-decoration">
+        <div class="card card-material no-icon">
+            <h3>{{ package.title }}</h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>
+                        {{ package.subtitle }}
+                        <h4><strong>&#8377; {{ package.rate }}</strong> for {{ package.duration }} {{ package.durationScale }}</h4>
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p>
+                        <span class="glyphicon glyphicon-time"></span> {{ package.created_at | utcToLocal:'DD MMM, YYYY (hh:mm a)' }}
+                    </p>
+                    <p>
+                        <span class="glyphicon glyphicon-user"></span> {{ package.createdBy.username }} ({{ package.createdBy.email }})
+                    </p>
+                </div>
+            </div>
+            
+            <div>
+                <a ui-sref="packageEdit({ packageId:package.id })" class="btn btn-sm btn-default text-green"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+            </div>
+        </div>
+        </a>
+    </div>
+
+</div>

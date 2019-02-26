@@ -109,7 +109,8 @@
             details: null,
             subjectId: null,
             typeId: null,
-            materialFile: null
+            materialFile: null,
+            isPremium: true
         };
 
         $scope.subjects = [];
@@ -163,9 +164,11 @@
         $scope.create = function(isValid){
             
             if (isValid){
+                console.log($scope.material);
                 materialService.save(formDataService.toFormData($scope.material))
                     .$promise
                     .then(function(response){
+                        console.log(response);
                         $state.go('material');
                     })
                     .catch(function(err){
@@ -300,7 +303,7 @@
             .catch(function(err){
                 console.log(err);
                 alert('There was some problem');
-                $state.go('material');
+                $state.go('subject');
             });
 
         $scope.update = function(isValid){
@@ -308,7 +311,8 @@
             materialService.update({id:$scope.material.id},formDataService.toFormData($scope.material))
                 .$promise
                 .then(function(response){
-                    $state.go('material');
+                    console.log($scope.material);
+                    $state.go('subjectMaterials', { subjectId: $scope.material.subjectId });
                 })
                 .catch(function(err){
                     console.log(err);
